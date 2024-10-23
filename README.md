@@ -44,4 +44,40 @@ This project is a real-time weather monitoring system developed using the **MERN
    ```bash
    git clone https://github.com/your-username/weather-monitoring.git
    cd weather-monitoring
+2. **Backend Setup**
+   ```bash
+   cd backend
+   npm install
+3. **Create a .env file with the following environment variables:**
+   ```make
+   PORT=5000
+    MONGO_URI=your_mongodb_connection_string
+    OPENWEATHER_API_KEY=your_openweathermap_api_key
 
+4. **Run the backend server:**
+   ```bash
+   npm start
+5. **Frontend Setup**
+   ```bash
+   cd ../frontend
+    npm install
+
+6. **Create a .env file with the following environment variable:**
+   ```make
+   REACT_APP_API_URL=http://localhost:5000/api
+
+7. **Run the frontend development server:**
+   ```bash
+   npm start
+8. **MongoDB Setup If you don’t have MongoDB set up, you can either:**
+   ```bash
+   Install MongoDB locally on your machine.
+    Use MongoDB Atlas for a cloud database instance.
+    Set your MONGO_URI environment variable accordingly.
+  
+
+
+
+
+
+   
