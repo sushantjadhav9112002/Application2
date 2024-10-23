@@ -16,32 +16,6 @@ This project is a real-time weather monitoring system developed using the **MERN
 - **Visualizations**: The frontend displays historical weather data, daily summaries, and triggered alerts.
 - **User Configurable Settings**: Users can set thresholds for triggering alerts based on temperature or specific weather conditions.
 
-## **Project Structure**
-
-
-```bash
-/weather-monitoring
-├── backend
-│   ├── controllers
-│   │   └── weatherController.js
-│   ├── models
-│   │   └── WeatherData.js
-│   ├── routes
-│   │   └── weatherRoutes.js
-│   └── server.js
-├── frontend
-│   ├── public
-│   │   └── index.html
-│   ├── src
-│   │   ├── components
-│   │   │   └── WeatherDisplay.js
-│   │   ├── utils
-│   │   │   └── weatherAPI.js
-│   │   └── App.js
-├── README.md
-├── package.json
-└── .env
-
 ##
 
 ## Technologies Used
