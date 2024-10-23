@@ -1,70 +1,160 @@
-# Getting Started with Create React App
+Real-Time Weather Monitoring System
+Project Overview
+This project is a real-time weather monitoring system developed using the MERN stack. The system fetches weather data from the OpenWeatherMap API at configurable intervals, processes it, and displays the data in the frontend. The project includes key features like daily weather summaries, alerting mechanisms based on user-configurable thresholds**, and visualizations for weather trends and alerts.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Features
+Real-Time Weather Data: The system fetches real-time weather updates at specified intervals for major cities in India.
+Daily Weather Summaries: The weather data is rolled up daily to compute summaries such as:
+Average temperature
+Maximum temperature
+Minimum temperature
+Dominant weather condition
+Alerting System: Configurable alerts trigger when:
+Temperature exceeds a defined threshold
+Specific weather conditions (e.g., rain) occur
+Visualizations: The frontend displays historical weather data, daily summaries, and triggered alerts.
+User Configurable Settings: Users can set thresholds for triggering alerts based on temperature or specific weather conditions.
+Project Structure
+bash
 
-## Available Scripts
+/weather-monitoring
+├── backend
+│   ├── controllers
+│   │   └── weatherController.js
+│   ├── models
+│   │   └── WeatherData.js
+│   ├── routes
+│   │   └── weatherRoutes.js
+│   └── server.js
+├── frontend
+│   ├── public
+│   │   └── index.html
+│   ├── src
+│   │   ├── components
+│   │   │   └── WeatherDisplay.js
+│   │   ├── utils
+│   │   │   └── weatherAPI.js
+│   │   └── App.js
+├── README.md
+├── package.json
+└── .env
 
-In the project directory, you can run:
 
-### `npm start`
+Technologies Used
+Frontend
+React.js: For the user interface.
+Chart.js: To visualize the weather data trends.
+Axios: For making HTTP requests to the backend API.
+Backend
+Node.js: For the server-side application.
+Express.js: For handling API routes and server logic.
+MongoDB: For storing weather data and daily summaries.
+Mongoose: For database schema management.
+Nodemailer: For sending email alerts when thresholds are breached.
+External API
+OpenWeatherMap API: To fetch real-time weather data.
+Installation and Setup
+Prerequisites
+Node.js (v14 or later)
+MongoDB (local or cloud instance)
+OpenWeatherMap API Key: You need to sign up for an API key from OpenWeatherMap.
+1. Clone the repository
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+git clone https://github.com/your-username/weather-monitoring.git
+cd weather-monitoring
+2. Backend Setup
+Navigate to the backend folder:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+cd backend
+Install the required dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+npm install
+Create a .env file in the backend folder with the following environment variables:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+make
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+OPENWEATHER_API_KEY=your_openweathermap_api_key
+Run the backend server:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm start
+The backend will be running at http://localhost:5000.
 
-### `npm run eject`
+3. Frontend Setup
+Navigate to the frontend folder:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+cd ../frontend
+Install the required dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npm install
+Create a .env file in the frontend folder with the following environment variables:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+REACT_APP_API_URL=http://localhost:5000/api
+Run the frontend development server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+npm start
+The frontend will be running at http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. MongoDB Setup
+If you don’t have MongoDB set up, you can either:
 
-### Analyzing the Bundle Size
+Install MongoDB locally on your machine.
+Use MongoDB Atlas for a cloud database instance.
+Set your MONGO_URI environment variable accordingly.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Functionality
+1. Real-Time Weather Data Fetching
+The system fetches weather data for predefined cities at regular intervals (configurable, e.g., every 5 minutes) using the OpenWeatherMap API. This data is stored in the MongoDB database and displayed in the frontend.
 
-### Making a Progressive Web App
+2. Daily Weather Summary
+At the end of each day, the system performs rollups and aggregates the weather data into daily summaries, including:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Average temperature for the day.
+Maximum and minimum temperatures recorded.
+Dominant weather condition (e.g., sunny, rainy).
+These summaries are stored in the database for future analysis and visualizations.
 
-### Advanced Configuration
+3. Alerting System
+The system tracks the latest weather data and compares it with user-configurable thresholds. Users can set alerts for:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Temperature: If the temperature exceeds a certain threshold (e.g., 35°C).
+Weather Conditions: If specific weather conditions (e.g., rain) are detected.
+Example Code Snippet for Alerts:
+void checkAlerts(const WeatherData& latestData, const float temperatureThreshold, const string& alertCondition) {
+    if (latestData.temperature > temperatureThreshold) {
+        cout << "Alert! Temperature exceeds threshold: " << latestData.temperature << "°C" << endl;
+    }
 
-### Deployment
+    if (latestData.condition == alertCondition) {
+        cout << "Alert! Weather condition is: " << alertCondition << endl;
+    }
+}
+4. Visualizations
+The frontend provides visualizations for:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Historical weather trends using Chart.js.
+Display of daily summaries.
+Real-time display of triggered alerts.
+5. Configurable Intervals and Alerts
+Users can configure:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The interval at which the system fetches new weather data.
+The thresholds for triggering alerts, such as maximum temperature or specific weather conditions.
+Testing and Evaluation
+Functionality: The project covers real-time weather updates, rollups, alerting, and visualization.
+Accuracy: Data accuracy is ensured by fetching reliable information from OpenWeatherMap and properly processing it.
+Efficiency: Efficient rollups and real-time processing.
+Code Quality: The code follows a modular structure with clear separation of concerns.
+Future Enhancements
+Support for Additional Cities: Easily extendable to track weather data from more cities.
+Forecasting: Implement support for weather forecasts from the OpenWeatherMap API.
+Notification System: Extend the alerting system to support SMS or push notifications.
+Conclusion
+This project provides a full-stack solution for real-time weather monitoring with key features like data rollups, alerts, and visualizations. By following the setup instructions, you can run the application locally and customize it to your needs.
