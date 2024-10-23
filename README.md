@@ -1,4 +1,6 @@
 Real-Time Weather Monitoring System
+
+
 Project Overview
 This project is a real-time weather monitoring system developed using the MERN stack. The system fetches weather data from the OpenWeatherMap API at configurable intervals, processes it, and displays the data in the frontend. The project includes key features like daily weather summaries, alerting mechanisms based on user-configurable thresholds**, and visualizations for weather trends and alerts.
 
