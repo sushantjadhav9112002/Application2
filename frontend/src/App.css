@@ -1,0 +1,17 @@
+/* frontend/src/App.css */
+
+.app {
+  text-align: center;
+  margin: 20px;
+}
+
+.error {
+  color: red;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
