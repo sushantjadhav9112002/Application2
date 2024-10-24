@@ -56,7 +56,7 @@ This project is a real-time weather monitoring system developed using the **MERN
 
 4. **Run the backend server:**
    ```bash
-   npm start
+   nodemon server.js
 5. **Frontend Setup**
    ```bash
    cd ../frontend
